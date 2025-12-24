@@ -10,8 +10,9 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { useLoginMutation } from "@/redux/features/auth/authapi"
+import toast from "react-hot-toast"
 
 type LoginFormValues = {
   email?: string
@@ -21,6 +22,7 @@ type LoginFormValues = {
 
  function SignIn() {
   const [login]=useLoginMutation()
+  const navigate =useNavigate()
   const {
     register,
     handleSubmit,
@@ -28,8 +30,7 @@ type LoginFormValues = {
   } = useForm<LoginFormValues>()
 
   const onSubmit = async(userData: LoginFormValues) => {
-    
-
+  
     const data={
       password:userData.password,
       email:userData.email,
@@ -37,14 +38,17 @@ type LoginFormValues = {
    
 try {
   const result=await login(data).unwrap()
-
-  if(result.su)
+console.log(result.email);
+  if(result.email){
+navigate("/")
+    toast.success("Login Successful")
+  }
   console.log(result);
 } catch (error) {
   console.log(error);
 }
 
-    // API call here
+    
   }
 
   return (

@@ -1,30 +1,35 @@
-import { useForm, Controller } from "react-hook-form"
-import { Button } from "@/components/ui/button"
+import { useForm, Controller } from "react-hook-form";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Link } from "react-router"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Link } from "react-router";
+import { useRegisterMutation } from "@/redux/features/auth/authapi";
 
 type RegisterFormValues = {
-  email: string
-  password: string
-  role: "user" | "agent"
-}
+  name: string;
+  phone: string;
+  email: string;
+  password: string;
+  role: "user" | "agent";
+};
 
 function Register() {
+
+  const [signUp]=useRegisterMutation()
   const {
     register,
     handleSubmit,
@@ -34,12 +39,23 @@ function Register() {
     defaultValues: {
       role: "user",
     },
-  })
+  });
 
-  const onSubmit = (data: RegisterFormValues) => {
-    console.log("Form Data 👉", data)
-    // 🔥 API call here
-  }
+  const onSubmit = async(UserData: RegisterFormValues) => {
+
+    const data ={
+      name:UserData.name,
+      email:UserData.email,
+      phone:UserData.phone,
+      password:UserData.password
+    }
+   try {
+    const result = await signUp(data)
+    console.log(result);
+   } catch (error) {
+    console.log(error);
+   }
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center">
@@ -53,7 +69,24 @@ function Register() {
 
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            
+            <div className="grid gap-2">
+              <Label>Name</Label>
+              <Input
+                type="text"
+                placeholder="Your name"
+                {...register("name", {
+                  required: "Name is required",
+                  minLength: {
+                    value: 3,
+                    message: "Name must be at least 3 characters",
+                  },
+                })}
+              />
+              {errors.name && (
+                <p className="text-sm text-red-500">{errors.name.message}</p>
+              )}
+            </div>
+
             {/* Email */}
             <div className="grid gap-2">
               <Label>Email</Label>
@@ -65,9 +98,25 @@ function Register() {
                 })}
               />
               {errors.email && (
-                <p className="text-sm text-red-500">
-                  {errors.email.message}
-                </p>
+                <p className="text-sm text-red-500">{errors.email.message}</p>
+              )}
+            </div>
+
+            <div className="grid gap-2">
+              <Label>Phone Number</Label>
+              <Input
+                type="tel"
+                placeholder="01XXXXXXXXX"
+                {...register("phone", {
+                  required: "Phone number is required",
+                  pattern: {
+                    value: /^(?:\+88|88)?01[3-9]\d{8}$/,
+                    message: "Enter a valid Bangladeshi phone number",
+                  },
+                })}
+              />
+              {errors.phone && (
+                <p className="text-sm text-red-500">{errors.phone.message}</p>
               )}
             </div>
 
@@ -79,10 +128,7 @@ function Register() {
                 control={control}
                 rules={{ required: "Role is required" }}
                 render={({ field }) => (
-                  <Select
-                    value={field.value}
-                    onValueChange={field.onChange}
-                  >
+                  <Select value={field.value} onValueChange={field.onChange}>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select role" />
                     </SelectTrigger>
@@ -94,9 +140,7 @@ function Register() {
                 )}
               />
               {errors.role && (
-                <p className="text-sm text-red-500">
-                  {errors.role.message}
-                </p>
+                <p className="text-sm text-red-500">{errors.role.message}</p>
               )}
             </div>
 
@@ -120,11 +164,7 @@ function Register() {
               )}
             </div>
 
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={isSubmitting}
-            >
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
               Register
             </Button>
           </form>
@@ -140,7 +180,7 @@ function Register() {
         </div>
       </Card>
     </div>
-  )
+  );
 }
 
-export default Register
+export default Register;
