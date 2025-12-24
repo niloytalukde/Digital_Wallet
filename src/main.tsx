@@ -6,12 +6,14 @@ import { router } from './routes/index.tsx'
 import { store } from './redux/store.ts'
 import { Provider } from 'react-redux'
 import  { Toaster } from 'react-hot-toast';
+import { ThemeProvider } from './provider/Theme-provider.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <ThemeProvider defaultTheme="dark">
     <Toaster/>
      <Provider store={store}>
       <RouterProvider router={router}/>
-
     </Provider>,
+    </ThemeProvider>
   </StrictMode>,
 )

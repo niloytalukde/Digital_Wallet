@@ -10,8 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router";
 import { Role } from "@/Conastance";
-
-
+import { ModeToggle } from "./Toggle";
 
 const navigationLinks = [
   { href: "/", label: "Home", role: "PUBLIC" },
@@ -21,7 +20,7 @@ const navigationLinks = [
   { href: "/contact", label: "Contact", role: "PUBLIC" },
   { href: "/admin", label: "Dashboard", role: Role.admin },
   { href: "/user", label: "Dashboard", role: Role.user },
-   { href: "/agent", label: "Dashboard", role: Role.agent },
+  { href: "/agent", label: "Dashboard", role: Role.agent },
 ];
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,10 +56,7 @@ const Navbar = () => {
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList className="gap-2">
               {navigationLinks.map((link, index) => {
-                if (
-                  link.role === "PUBLIC" ||
-                  link.role === Role.user
-                ) {
+                if (link.role === "PUBLIC" || link.role === Role.user) {
                   return (
                     <NavigationMenuItem key={index}>
                       <NavigationMenuLink asChild>
@@ -84,6 +80,7 @@ const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
 
+          <ModeToggle></ModeToggle>
           {/* Right Side */}
           {/* <div className="hidden lg:flex items-center gap-3">
             {!user?.email ? (
@@ -103,10 +100,7 @@ const Navbar = () => {
           </div> */}
 
           {/* Mobile Toggle */}
-          <button
-            className="lg:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-          >
+          <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X /> : <Menu />}
           </button>
         </nav>
@@ -115,10 +109,7 @@ const Navbar = () => {
         {isOpen && (
           <div className="lg:hidden mt-4 space-y-2">
             {navigationLinks.map((link, index) => {
-              if (
-                link.role === "PUBLIC" ||
-                link.role === Role.user
-              ) {
+              if (link.role === "PUBLIC" || link.role === Role.user) {
                 return (
                   <Link
                     key={index}
