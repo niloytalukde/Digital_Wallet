@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Link } from "react-router"
+import { useLoginMutation } from "@/redux/features/auth/authapi"
 
 type LoginFormValues = {
   email?: string
@@ -19,14 +20,30 @@ type LoginFormValues = {
 }
 
  function SignIn() {
+  const [login]=useLoginMutation()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormValues>()
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log("Form Data ", data)
+  const onSubmit = async(userData: LoginFormValues) => {
+    
+
+    const data={
+      password:userData.password,
+      email:userData.email,
+    }
+   
+try {
+  const result=await login(data).unwrap()
+
+  if(result.su)
+  console.log(result);
+} catch (error) {
+  console.log(error);
+}
+
     // API call here
   }
 
@@ -48,7 +65,7 @@ type LoginFormValues = {
           <div className="grid gap-2">
             <Label>Email</Label>
             <Input
-              type="email"
+              type="text"
               placeholder="m@example.com"
               {...register("email", {
                 required: "Email is required",
