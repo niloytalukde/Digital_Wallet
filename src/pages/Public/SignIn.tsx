@@ -39,7 +39,7 @@ type LoginFormValues = {
 try {
   const result=await login(data).unwrap()
 console.log(result.email);
-  if(result.email){
+  if(result?.user?.email){
 navigate("/")
     toast.success("Login Successful")
   }

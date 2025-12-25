@@ -11,6 +11,9 @@ import DashboardLayout from "@/components/Layout/CommonLayout/DashboardLayout";
 import Profile from "@/pages/User/Profile";
 import { generateSidebarRoutes } from "@/Utils/generateSidebarRoutes";
 import { adminSidebarItems } from "./AdminSidebarItems";
+import { withAuth } from "@/Utils/withAuth";
+import Unauthorize from "@/pages/Public/Unauthorize";
+import { Role } from "@/Conastance";
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +30,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "faq",
-        Component: FAQ,
+        Component: withAuth(FAQ,"admin"),
       },
       {
         path: "contact",
@@ -37,14 +40,14 @@ export const router = createBrowserRouter([
   },
   // Admin LAyout
   {
-    Component: DashboardLayout,
+    Component: withAuth(DashboardLayout,Role.admin),
     path: "/admin",
     children: [...generateSidebarRoutes(adminSidebarItems)],
   },
 
   // User Layout
   {
-    Component: DashboardLayout,
+    Component: withAuth(DashboardLayout,Role.user),
     path: "/user",
     children: [
       {
@@ -62,5 +65,9 @@ export const router = createBrowserRouter([
   {
     Component: Register,
     path: "/register",
+  },
+  {
+    Component: Unauthorize,
+    path: "/unauthorize",
   },
 ]);

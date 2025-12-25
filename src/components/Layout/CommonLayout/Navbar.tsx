@@ -45,7 +45,7 @@ const [logout] =useLogOutMutation()
 const dispatch=useAppDispatch()
 
 const handelSubmit = async()=>{
-console.log("clicked");
+
 await logout(undefined)
 dispatch(authApi.util.resetApiState())
 }
@@ -71,7 +71,78 @@ dispatch(authApi.util.resetApiState())
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList className="gap-2">
               {navigationLinks.map((link, index) => {
-                if (link.role === "PUBLIC" || link.role === Role.user) {
+                if (link.role === "PUBLIC") {
+                  return (
+                    <NavigationMenuItem key={index}>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          to={link.href}
+                          className={cn(
+                            "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                            isActive(link.href)
+                              ? "bg-accent text-accent-foreground"
+                              : "text-muted-foreground hover:bg-accent"
+                          )}
+                        >
+                          {link.label}
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  );
+                }
+                return null;
+              })}
+
+              {/* Admin  */}
+               {data?.role === Role.admin && navigationLinks.map((link, index) => {
+                if (link.role === Role.admin) {
+                  return (
+                    <NavigationMenuItem key={index}>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          to={link.href}
+                          className={cn(
+                            "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                            isActive(link.href)
+                              ? "bg-accent text-accent-foreground"
+                              : "text-muted-foreground hover:bg-accent"
+                          )}
+                        >
+                          {link.label}
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  );
+                }
+                return null;
+              })}
+              {/* Agent  */}
+              {data?.role === Role.agent &&  navigationLinks.map((link, index) => {
+                if (link.role === Role.agent) {
+                  return (
+                    <NavigationMenuItem key={index}>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          to={link.href}
+                          className={cn(
+                            "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                            isActive(link.href)
+                              ? "bg-accent text-accent-foreground"
+                              : "text-muted-foreground hover:bg-accent"
+                          )}
+                        >
+                          {link.label}
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  );
+                }
+                return null;
+              })}
+
+              {/* user  */}
+               {data?.role === Role.user &&  navigationLinks.map((link, index) => {
+                if (link.role === Role.agent) {
                   return (
                     <NavigationMenuItem key={index}>
                       <NavigationMenuLink asChild>
