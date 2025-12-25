@@ -47,7 +47,7 @@ const Profile = () => {
         <div className="grid grid-cols-3 gap-4 mt-4 px-4 p-1 rounded-lg">
           {cardData.map((card) => (
             <Link to={card.link}>
-              <div className="flex flex-col bg-gradient-to-r from-primary to-secondary items-center p-4 bg-muted rounded-lg hover:shadow-md cursor-pointer transition">
+              <div className="flex flex-col bg-linear-to-r from-primary to-secondary items-center p-4 bg-muted rounded-lg hover:shadow-md cursor-pointer transition">
                 <p className="font-medium">{card.title}</p>
               </div>
             </Link>

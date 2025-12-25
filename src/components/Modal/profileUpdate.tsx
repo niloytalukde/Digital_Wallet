@@ -49,7 +49,7 @@ console.log(updateUser);
         <Button className="w-full mt-5">Update Profile</Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-106.25">
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>

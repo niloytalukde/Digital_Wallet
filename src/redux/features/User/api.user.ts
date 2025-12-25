@@ -17,10 +17,6 @@ updateUser: builder.mutation({
     invalidatesTags: ["User"]
   }),
 }),
-
-
-  
-
   }),
 });
 
