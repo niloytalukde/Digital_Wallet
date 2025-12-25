@@ -10,3 +10,17 @@ export interface ISidebar {
 }
 
 export type  TRole= "admin"|"user" |"agent"
+
+
+export interface IUser {
+  _id: string;
+  name: string;
+  email: string;
+  phone: string;
+  role: "user" | "admin" | "agent";
+  isApproved: "pending" | "approved" | "rejected";
+  password: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}

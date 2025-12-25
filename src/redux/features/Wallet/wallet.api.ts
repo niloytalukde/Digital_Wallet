@@ -8,7 +8,13 @@ export const walletApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    balance: builder.query({
+      query: ( ) => ({
+        url: "/wallet/my",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useLazyGetReceiverQuery } = walletApi;
+export const { useLazyGetReceiverQuery,useBalanceQuery } = walletApi;
