@@ -58,6 +58,7 @@ const [sendMoney, { isLoading }] = useSendMoneyMutation();
         
         <Input
           type="text"
+          className="py-5"
           placeholder="Enter phone or email"
           value={search}
           onChange={(e) => {
@@ -75,6 +76,7 @@ const [sendMoney, { isLoading }] = useSendMoneyMutation();
 
 
         <Input
+        className="py-10"
           type="number"
           placeholder="Enter amount"
           value={amount}
