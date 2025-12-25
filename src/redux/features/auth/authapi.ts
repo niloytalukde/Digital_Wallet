@@ -16,10 +16,21 @@ Register: builder.mutation({
         data: payload, 
       }),
     }),
-
-
+getMe: builder.query({
+      query: () => ({
+        url: "/user/me",
+        method: "GET",
+      }),
+    }),
+    logOut: builder.mutation({
+      query: (payload) => ({
+        url: "/auth/logout",
+        method: "POST",
+        data:payload
+      }),
+    }),
 
   }),
 });
 
-export const { useLoginMutation,useRegisterMutation } = authApi;
+export const { useLoginMutation,useRegisterMutation,useGetMeQuery ,useLogOutMutation} = authApi;

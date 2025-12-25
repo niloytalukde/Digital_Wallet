@@ -11,6 +11,11 @@ import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router";
 import { Role } from "@/Conastance";
 import { ModeToggle } from "./Toggle";
+import { authApi, useGetMeQuery, useLogOutMutation } from "@/redux/features/auth/authapi";
+
+import { useAppDispatch } from "@/redux/hooks";
+
+
 
 const navigationLinks = [
   { href: "/", label: "Home", role: "PUBLIC" },
@@ -23,6 +28,7 @@ const navigationLinks = [
   { href: "/agent", label: "Dashboard", role: Role.agent },
 ];
 const Navbar = () => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
@@ -34,6 +40,17 @@ const Navbar = () => {
   }, []);
 
   const isActive = (path: string) => location.pathname === path;
+
+const {data}=useGetMeQuery(undefined)
+
+const [logout] =useLogOutMutation()
+const dispatch=useAppDispatch()
+
+const handelSubmit = async()=>{
+console.log("clicked");
+await logout(undefined)
+dispatch(authApi.util.resetApiState())
+}
 
   return (
     <header
@@ -80,10 +97,11 @@ const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <ModeToggle></ModeToggle>
+          
           {/* Right Side */}
-          {/* <div className="hidden lg:flex items-center gap-3">
-            {!user?.email ? (
+          <div className="hidden lg:flex items-center gap-3">
+            <ModeToggle></ModeToggle>
+            {!data?.email ? (
               <>
                 <Link to="/login">
                   <Button variant="ghost">Sign In</Button>
@@ -93,11 +111,11 @@ const Navbar = () => {
                 </Link>
               </>
             ) : (
-              <Button variant="outline" >
+              <Button variant="outline" onClick={handelSubmit}>
                 Logout
               </Button>
             )}
-          </div> */}
+          </div>
 
           {/* Mobile Toggle */}
           <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
@@ -124,8 +142,8 @@ const Navbar = () => {
               return null;
             })}
 
-            {/* <div className="pt-4 border-t space-y-2">
-              {!user?.email ? (
+            <div className="pt-4 border-t space-y-2">
+              {!data?.email ? (
                 <>
                   <Link to="/login">
                     <Button className="w-full" variant="outline">
@@ -142,12 +160,12 @@ const Navbar = () => {
                 <Button
                   className="w-full"
                   variant="outline"
-                  onClick={handleLogout}
+                  onClick={handelSubmit}
                 >
                   Logout
                 </Button>
               )}
-            </div> */}
+            </div>
           </div>
         )}
       </div>
