@@ -8,3 +8,5 @@ export interface ISidebar {
     component: ComponentType;
   }[];
 }
+
+export type  TRole= "admin"|"user" |"agent"

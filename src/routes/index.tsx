@@ -7,13 +7,12 @@ import Register from "@/pages/Public/Register";
 import FAQ from "@/pages/Public/Faq";
 import Contact from "@/pages/Public/ContactUs";
 import DashboardLayout from "@/components/Layout/CommonLayout/DashboardLayout";
-
-import Profile from "@/pages/User/Profile";
 import { generateSidebarRoutes } from "@/Utils/generateSidebarRoutes";
 import { adminSidebarItems } from "./AdminSidebarItems";
 import { withAuth } from "@/Utils/withAuth";
 import Unauthorize from "@/pages/Public/Unauthorize";
 import { Role } from "@/Conastance";
+import { userSidebarItems } from "./UserSidebarItems";
 
 export const router = createBrowserRouter([
   {
@@ -49,12 +48,7 @@ export const router = createBrowserRouter([
   {
     Component: withAuth(DashboardLayout,Role.user),
     path: "/user",
-    children: [
-      {
-        Component: Profile,
-        path: "profile",
-      },
-    ],
+    children: [...generateSidebarRoutes(userSidebarItems)],
   },
 
   // PUblic  

@@ -35,7 +35,9 @@ export const adminSidebarItems :ISidebar[] =[
           url:"/admin/profile",
           component: Profile
         },
+        
       ],
+     
     },
     
   ]
