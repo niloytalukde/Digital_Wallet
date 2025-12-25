@@ -7,8 +7,10 @@ import Register from "@/pages/Public/Register";
 import FAQ from "@/pages/Public/Faq";
 import Contact from "@/pages/Public/ContactUs";
 import DashboardLayout from "@/components/Layout/CommonLayout/DashboardLayout";
-import Analytics from "@/pages/Admin/Analytics";
+
 import Profile from "@/pages/User/Profile";
+import { generateSidebarRoutes } from "@/Utils/generateSidebarRoutes";
+import { adminSidebarItems } from "./AdminSidebarItems";
 
 export const router = createBrowserRouter([
   {
@@ -37,12 +39,7 @@ export const router = createBrowserRouter([
   {
     Component: DashboardLayout,
     path: "/admin",
-    children: [
-      {
-        Component: Analytics,
-        path: "analytics",
-      },
-    ],
+    children: [...generateSidebarRoutes(adminSidebarItems)],
   },
 
   // User Layout

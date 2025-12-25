@@ -15,8 +15,6 @@ import { authApi, useGetMeQuery, useLogOutMutation } from "@/redux/features/auth
 
 import { useAppDispatch } from "@/redux/hooks";
 
-
-
 const navigationLinks = [
   { href: "/", label: "Home", role: "PUBLIC" },
   { href: "/about", label: "About", role: "PUBLIC" },
