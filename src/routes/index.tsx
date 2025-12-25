@@ -6,6 +6,9 @@ import SignIn from "@/pages/Public/SignIn";
 import Register from "@/pages/Public/Register";
 import FAQ from "@/pages/Public/Faq";
 import Contact from "@/pages/Public/ContactUs";
+import DashboardLayout from "@/components/Layout/CommonLayout/DashboardLayout";
+import Analytics from "@/pages/Admin/Analytics";
+import Profile from "@/pages/User/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +33,31 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  // Admin LAyout
+  {
+    Component: DashboardLayout,
+    path: "/admin",
+    children: [
+      {
+        Component: Analytics,
+        path: "analytics",
+      },
+    ],
+  },
 
+  // User Layout
+  {
+    Component: DashboardLayout,
+    path: "/user",
+    children: [
+      {
+        Component: Profile,
+        path: "profile",
+      },
+    ],
+  },
+
+  // PUblic  
   {
     Component: SignIn,
     path: "/login",
