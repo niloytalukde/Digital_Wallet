@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useRegisterMutation } from "@/redux/features/auth/authapi";
+import toast from "react-hot-toast";
 
 type RegisterFormValues = {
   name: string;
@@ -29,6 +30,7 @@ type RegisterFormValues = {
 
 function Register() {
 
+  const navigate =useNavigate()
   const [signUp]=useRegisterMutation()
   const {
     register,
@@ -50,8 +52,10 @@ function Register() {
       password:UserData.password
     }
    try {
-    const result = await signUp(data)
-    console.log(result);
+   await signUp(data)
+      navigate("/login")
+      toast.success("User Created SuccessFul")
+
    } catch (error) {
     console.log(error);
    }

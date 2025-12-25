@@ -11,7 +11,7 @@ return function AuthWrapper (){
             return <Navigate to={"/login"}></Navigate>
         }
          if(role && !isLoading && role != data?.role ){
-            return <Navigate to="unauthorize"></Navigate>
+            return <Navigate to="/unauthorize"></Navigate>
          }
 
 

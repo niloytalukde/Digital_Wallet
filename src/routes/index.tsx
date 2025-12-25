@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "faq",
-        Component: withAuth(FAQ,"admin"),
+        Component: FAQ
       },
       {
         path: "contact",
