@@ -4,17 +4,24 @@ export const walletApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getReceiver: builder.query({
       query: (searchText ) => ({
-        url: `/user/search?searchText=${searchText }`,
+        url: `/user/search?query=${searchText }`,
         method: "GET",
       }),
     }),
     balance: builder.query({
-      query: ( ) => ({
+      query: () => ({
         url: "/wallet/my",
         method: "GET",
+      }),
+    }),
+    sendMoney: builder.mutation({
+      query: (payload) => ({
+        url: "/wallet/send",
+        method: "POST",
+        data:payload
       }),
     }),
   }),
 });
 
-export const { useLazyGetReceiverQuery,useBalanceQuery } = walletApi;
+export const { useGetReceiverQuery,useBalanceQuery,useSendMoneyMutation } = walletApi;
