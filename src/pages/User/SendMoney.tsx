@@ -10,13 +10,9 @@ export default function SendMoney() {
   const [search, setSearch] = useState("");
   const [amount, setAmount] = useState<number>(0);
   const [selectedUser, setSelectedUser] = useState<IUser | null>(null);
-
- 
   const { data: users = [], isFetching } = useGetReceiverQuery(search, {
     skip: search.length < 8 || !!selectedUser,
   });
-
-  
 const [sendMoney, { isLoading }] = useSendMoneyMutation();
 
  
@@ -54,8 +50,9 @@ const [sendMoney, { isLoading }] = useSendMoneyMutation();
 
   return (
     <div className="relative max-w-md mx-auto space-y-3">
+    <h1 className="text-center text-2xl  font-bold">Send Money</h1>
       <form onSubmit={handleSubmit} className="space-y-3">
-        
+      
         <Input
           type="text"
           className="py-5"

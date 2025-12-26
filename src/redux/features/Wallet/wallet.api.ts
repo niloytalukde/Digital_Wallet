@@ -21,7 +21,14 @@ export const walletApi = baseApi.injectEndpoints({
         data:payload
       }),
     }),
+    withdrawMoney: builder.mutation({
+      query: (payload) => ({
+        url: "/wallet/withdraw",
+        method: "POST",
+        data:payload
+      }),
+    }),
   }),
 });
 
-export const { useGetReceiverQuery,useBalanceQuery,useSendMoneyMutation } = walletApi;
+export const { useGetReceiverQuery,useBalanceQuery,useSendMoneyMutation,useWithdrawMoneyMutation } = walletApi;
