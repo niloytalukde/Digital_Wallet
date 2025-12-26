@@ -1,11 +1,11 @@
 
+import Profile from "@/pages/Admin/Profile";
 import CashIn from "@/pages/Agent/CashIn";
 import CashOut from "@/pages/Agent/CashOut";
 import MyTransaction from "@/pages/User/MyTransaction";
-import Profile from "@/pages/User/Profile";
-import type { ISidebar } from "@/types";
 
-export const agentSidebarItems :ISidebar[] =[
+import type { ISidebar } from "@/types";
+export const AgentSidebarItems :ISidebar[] =[
     {
       title: "Dashboard",
       items: [

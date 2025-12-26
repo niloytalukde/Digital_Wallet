@@ -13,7 +13,7 @@ import { withAuth } from "@/Utils/withAuth";
 import Unauthorize from "@/pages/Public/Unauthorize";
 import { Role } from "@/Conastance";
 import { userSidebarItems } from "./UserSidebarItems";
-import { agentSidebarItems } from "./AgentSidebarItems";
+import { AgentSidebarItems,} from "./AgentSidebarItems";
 import Approval from "@/pages/Public/Approval";
 
 export const router = createBrowserRouter([
@@ -53,11 +53,11 @@ export const router = createBrowserRouter([
     children: [...generateSidebarRoutes(userSidebarItems)],
   },
   
-
+  // Agent Layout
 {
     Component: withAuth(DashboardLayout,Role.agent),
     path: "/agent",
-    children: [...generateSidebarRoutes(agentSidebarItems)],
+    children: [...generateSidebarRoutes(AgentSidebarItems)],
   },
   
 

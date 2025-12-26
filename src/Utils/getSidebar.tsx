@@ -1,5 +1,6 @@
 import { Role } from "@/Conastance";
 import { adminSidebarItems } from "@/routes/AdminSidebarItems";
+import { AgentSidebarItems } from "@/routes/AgentSidebarItems";
 import { userSidebarItems } from "@/routes/UserSidebarItems";
 export const getSidebar = (userRole: string) => {
   switch (userRole) {
@@ -9,7 +10,7 @@ export const getSidebar = (userRole: string) => {
       return [...userSidebarItems];
 
     case Role.agent:
-      return [...userSidebarItems];
+      return [...AgentSidebarItems];
 
     default:
       return [];
