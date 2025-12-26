@@ -14,6 +14,7 @@ import Unauthorize from "@/pages/Public/Unauthorize";
 import { Role } from "@/Conastance";
 import { userSidebarItems } from "./UserSidebarItems";
 import { agentSidebarItems } from "./AgentSidebarItems";
+import Approval from "@/pages/Public/Approval";
 
 export const router = createBrowserRouter([
   {
@@ -73,5 +74,9 @@ export const router = createBrowserRouter([
   {
     Component: Unauthorize,
     path: "/unauthorize",
+  },
+   {
+    Component: Approval,
+    path: "/approval",
   },
 ]);

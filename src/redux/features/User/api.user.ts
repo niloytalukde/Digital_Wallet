@@ -17,6 +17,13 @@ export const userApi = baseApi.injectEndpoints({
       })
     }),
 
+getAllAgent: builder.query({
+      query: () => ({
+        url: "/user/agent",
+        method: "GET",
+      })
+    }),
+
     updateUser: builder.mutation({
       query: ({ id, data }) => ({
         url: `/user/update/${id}`,
@@ -42,4 +49,5 @@ export const {
   useGetAllUsersQuery,
   useUpdateUserMutation,
   useUpdateUserStatusMutation,
+  useGetAllAgentQuery
 } = userApi;

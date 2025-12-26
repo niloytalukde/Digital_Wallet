@@ -49,7 +49,8 @@ function Register() {
       name:UserData.name,
       email:UserData.email,
       phone:UserData.phone,
-      password:UserData.password
+      password:UserData.password,
+      role:UserData.role
     }
    try {
    await signUp(data)
