@@ -4,12 +4,19 @@ import AllUsers from "@/pages/Admin/AllUsers";
 import Analytics from "@/pages/Admin/Analytics";
 import Profile from "@/pages/Admin/Profile";
 
+
+
 import type { ISidebar } from "@/types";
 
 export const adminSidebarItems :ISidebar[] =[
     {
       title: "Dashboard",
       items: [
+         {
+          title: "Profile ",
+          url:"/admin/profile",
+          component:Profile
+        },
         {
           title: "Analytics ",
           url:"/admin/analytics",
@@ -30,11 +37,7 @@ export const adminSidebarItems :ISidebar[] =[
           url:"/admin/agents",
           component: AllAgents 
         },
-        {
-          title: "Profile ",
-          url:"/admin/profile",
-          component: Profile
-        },
+       
         
       ],
      

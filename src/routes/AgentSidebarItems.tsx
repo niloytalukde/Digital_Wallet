@@ -1,32 +1,32 @@
 
+import CashIn from "@/pages/Agent/CashIn";
+import CashOut from "@/pages/Agent/CashOut";
 import MyTransaction from "@/pages/User/MyTransaction";
 import Profile from "@/pages/User/Profile";
-import SendMoney from "@/pages/User/SendMoney";
-import WithdrawMoney from "@/pages/User/WithdrawMoney";
 import type { ISidebar } from "@/types";
 
-export const userSidebarItems :ISidebar[] =[
+export const agentSidebarItems :ISidebar[] =[
     {
       title: "Dashboard",
       items: [
         {
           title: "Profile",
-          url:"/user/profile",
+          url:"/agent/profile",
           component: Profile
         },
         {
-          title: "Send Money",
-          url:"/user/send-money",
-          component: SendMoney
+          title: "Cash In",
+          url:"/agent/cash-in",
+          component: CashIn
         },
          {
-          title:  " Withdraw Money",
-          url:"/user/withdraw-money",
-          component: WithdrawMoney 
+          title:  "Cash Out",
+          url:"/agent/cash-out",
+          component: CashOut
         },
          {
           title:  "MyTransaction",
-          url:"/user/my-transaction",
+          url:"/agent/my-transaction",
           component: MyTransaction
         },
        

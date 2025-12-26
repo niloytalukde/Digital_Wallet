@@ -20,6 +20,7 @@ export interface IUser {
   role: "user" | "admin" | "agent";
   isApproved: "pending" | "approved" | "rejected";
   password: string;
+  status:"active" | "blocked" | "unblocked";
   createdAt: string;
   updatedAt: string;
   __v: number;

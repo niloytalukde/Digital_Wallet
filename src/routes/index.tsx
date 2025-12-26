@@ -13,6 +13,7 @@ import { withAuth } from "@/Utils/withAuth";
 import Unauthorize from "@/pages/Public/Unauthorize";
 import { Role } from "@/Conastance";
 import { userSidebarItems } from "./UserSidebarItems";
+import { agentSidebarItems } from "./AgentSidebarItems";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,15 @@ export const router = createBrowserRouter([
     path: "/user",
     children: [...generateSidebarRoutes(userSidebarItems)],
   },
+  
+
+{
+    Component: withAuth(DashboardLayout,Role.agent),
+    path: "/agent",
+    children: [...generateSidebarRoutes(agentSidebarItems)],
+  },
+  
+
 
   // PUblic  
   {
