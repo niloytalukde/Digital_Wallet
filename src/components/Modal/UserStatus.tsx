@@ -34,20 +34,22 @@ export function UserStatus({ data }: { data: { _id: string; status: "active" | "
    // eslint-disable-next-line react-hooks/rules-of-hooks
    const [update, { isLoading }] = useUpdateUserStatusMutation();
  
+const onSubmit = async (formData: StatusFormValues) => {
+  console.log(formData.status);
 
-  const onSubmit = async (formData: StatusFormValues) => {
-    try {
-      
-      await update({
-        id: data._id,
-        data: { status: formData.status },
-      }).unwrap();
+  try {
+    await update({
+      id: data._id,
+      data: formData.status
+    }).unwrap();
 
-      console.log("Status updated successfully");
-    } catch (error) {
-      console.error("Status update failed", error);
-    }
-  };
+    console.log("Status updated successfully");
+  } catch (error) {
+    console.error("Status update failed", error);
+  }
+};
+
+  
 
   return (
     <Dialog>

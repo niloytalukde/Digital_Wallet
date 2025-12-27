@@ -32,14 +32,14 @@ getAllAgent: builder.query({
       }),
       
     }),
-
     updateUserStatus: builder.mutation({
-      query: ({ id, status }) => ({
-        url: `/user/block/${id}`,
-        method: "PATCH",
-        data: { status },
-      }),
-    }),
+  query: ({ id, data }) => ({
+    url: `/user/block/${id}`,
+    method: "PATCH",
+    data: data, 
+  }),
+}),
+
 
   }),
 });

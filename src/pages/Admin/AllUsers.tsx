@@ -35,6 +35,7 @@ function AllUsers() {
             <TableHead>Name</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Role</TableHead>
+            <TableHead>Status</TableHead>
             <TableHead className="text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
@@ -47,6 +48,7 @@ function AllUsers() {
               </TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.role}</TableCell>
+              <TableCell>{user.status}</TableCell>
               <TableCell className="text-right">
                 <UserStatus data={user} />
               </TableCell>
