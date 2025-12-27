@@ -11,9 +11,10 @@ myTransaction: builder.query({
     }),
 
     allTransaction: builder.query({
-      query: () => ({
+      query: (params) => ({
         url: "/transactions/all-transactions",
         method: "GET",
+        params
       }),
     }),
 

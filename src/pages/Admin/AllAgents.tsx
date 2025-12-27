@@ -1,4 +1,6 @@
-import { UserStatus } from "@/components/Modal/userStatus";
+
+import { ApprovedAgent } from "@/components/Modal/ApprovedAgent";
+
 import {
   Table,
   TableBody,
@@ -36,13 +38,13 @@ function AllAgents() {
             <TableHead>Email</TableHead>
             <TableHead>Role</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead>Agent Approvel</TableHead>
+            <TableHead>Agent Approval</TableHead>
             <TableHead className="text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
 
         <TableBody>
-          {users.map((user) => (
+          {users.map((user: IUser) => (
             <TableRow key={user._id}>
               <TableCell className="font-medium">
                 {user.name}
@@ -52,7 +54,7 @@ function AllAgents() {
               <TableCell>{user.status}</TableCell>
               <TableCell>{user.isApproved}</TableCell>
               <TableCell className="text-right">
-                <UserStatus data={user} />
+             <ApprovedAgent data={user} />
               </TableCell>
             </TableRow>
           ))}

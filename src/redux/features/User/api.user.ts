@@ -41,14 +41,12 @@ getAllAgent: builder.query({
 }),
 
   approvedAgent: builder.mutation({
-  query: ({ id, data }) => ({
+  query: ({ id, agentStatus  }) => ({
     url: `/user/approve-agent/${id}`,
     method: "PATCH",
-    body: data, 
+    body: agentStatus , 
   }),
 }),
-
-
   }),
 });
 

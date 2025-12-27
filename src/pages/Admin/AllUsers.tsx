@@ -1,4 +1,5 @@
-import { UserStatus } from "@/components/Modal/userStatus";
+
+import { UserStatus } from "@/components/Modal/UserStatus";
 import {
   Table,
   TableBody,
