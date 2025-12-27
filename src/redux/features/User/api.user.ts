@@ -32,11 +32,19 @@ getAllAgent: builder.query({
       }),
       
     }),
-    updateUserStatus: builder.mutation({
+  updateUserStatus: builder.mutation({
   query: ({ id, data }) => ({
     url: `/user/block/${id}`,
     method: "PATCH",
-    data: data, 
+    body: data, 
+  }),
+}),
+
+  approvedAgent: builder.mutation({
+  query: ({ id, data }) => ({
+    url: `/user/approve-agent/${id}`,
+    method: "PATCH",
+    body: data, 
   }),
 }),
 
@@ -49,5 +57,6 @@ export const {
   useGetAllUsersQuery,
   useUpdateUserMutation,
   useUpdateUserStatusMutation,
-  useGetAllAgentQuery
+  useGetAllAgentQuery,
+  useApprovedAgentMutation
 } = userApi;

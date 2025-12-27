@@ -24,37 +24,39 @@ type StatusFormValues = {
   status: "active" | "blocked" | "unblocked";
 };
 
-export function UserStatus({ data }: { data: { _id: string; status: "active" | "blocked" | "unblocked" } }) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { handleSubmit, setValue } = useForm<StatusFormValues>({
-    defaultValues: {
-      status: data?.status ?? "active",
-    },
-  });
-   // eslint-disable-next-line react-hooks/rules-of-hooks
-   const [update, { isLoading }] = useUpdateUserStatusMutation();
- 
-const onSubmit = async (formData: StatusFormValues) => {
-  console.log(formData.status);
-
-  try {
-    await update({
-      id: data._id,
-      data: formData.status
-    }).unwrap();
-
-    console.log("Status updated successfully");
-  } catch (error) {
-    console.error("Status update failed", error);
-  }
+type Props = {
+  data: {
+    _id: string;
+    status: "active" | "blocked" | "unblocked";
+  };
 };
 
-  
+export function UserStatus({ data }: Props) {
+  const { handleSubmit, setValue } = useForm<StatusFormValues>({
+    defaultValues: {
+      status: data.status,
+    },
+  });
+
+  const [update, { isLoading }] = useUpdateUserStatusMutation();
+
+  const onSubmit = async (formData: StatusFormValues) => {
+    try {
+      await update({
+        id: data._id,
+        data: { status: formData.status }, // ✅ FIXED
+      }).unwrap();
+
+      console.log("Status updated successfully");
+    } catch (error) {
+      console.error("Status update failed", error);
+    }
+  };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className=" mt-5">Update Status</Button>
+        <Button className="mt-5">Update Status</Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-md">
@@ -67,18 +69,22 @@ const onSubmit = async (formData: StatusFormValues) => {
           </DialogHeader>
 
           <div className="grid gap-4 py-4">
-            {/* Status only */}
             <div className="grid gap-2">
               <Label>Status</Label>
+
               <Select
-                defaultValue={data?.status}
+                defaultValue={data.status}
                 onValueChange={(value) =>
-                  setValue("status", value as "active" | "blocked")
+                  setValue(
+                    "status",
+                    value as "active" | "blocked" | "unblocked"
+                  )
                 }
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
+
                 <SelectContent>
                   <SelectItem value="active">Active</SelectItem>
                   <SelectItem value="blocked">Blocked</SelectItem>
@@ -94,6 +100,7 @@ const onSubmit = async (formData: StatusFormValues) => {
                 Cancel
               </Button>
             </DialogClose>
+
             <Button type="submit" disabled={isLoading}>
               {isLoading ? "Updating..." : "Save"}
             </Button>

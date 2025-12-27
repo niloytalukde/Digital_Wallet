@@ -10,7 +10,14 @@ myTransaction: builder.query({
       }),
     }),
 
+    allTransaction: builder.query({
+      query: () => ({
+        url: "/transactions/all-transactions",
+        method: "GET",
+      }),
+    }),
+
   }),
 });
 
-export const { useMyTransactionQuery} = transactionApi;
+export const { useMyTransactionQuery,useAllTransactionQuery} = transactionApi;

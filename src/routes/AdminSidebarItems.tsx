@@ -1,5 +1,5 @@
 import AllAgents from "@/pages/Admin/AllAgents";
-import AllTransition from "@/pages/Admin/AllTransition";
+import AllTransaction from "@/pages/Admin/AllTransition";
 import AllUsers from "@/pages/Admin/AllUsers";
 import Analytics from "@/pages/Admin/Analytics";
 import Profile from "@/pages/Admin/Profile";
@@ -30,7 +30,7 @@ export const adminSidebarItems :ISidebar[] =[
         {
           title: "All Transition ",
           url:"/admin/transition",
-          component: AllTransition 
+          component:AllTransaction 
         },
         {
           title: "All Agents ",
