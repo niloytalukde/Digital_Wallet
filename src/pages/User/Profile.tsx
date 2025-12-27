@@ -26,7 +26,6 @@ const Profile = () => {
   const { data: balance } = useBalanceQuery(undefined);
 
 
-  console.log(balance);
   return (
     <div className="flex flex-wrap items-center justify-center gap-4 p">
       <div className="bg-background text-foreground rounded-2xl pb-4 overflow-hidden border border-border hover:-translate-y-1 transition duration-300 shadow-sm p-10">

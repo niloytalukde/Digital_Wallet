@@ -15,6 +15,7 @@ import { useUpdateUserMutation } from "@/redux/features/User/api.user";
 import type { IUser } from "@/types";
 
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 type ProfileFormValues = {
   name: string;
@@ -38,9 +39,14 @@ export function ProfileUpdateModal({ data }: { data: IUser }) {
   const [update] = useUpdateUserMutation();
 
 const onSubmit = async(formData: ProfileFormValues) => {
-  console.log(formData);
-  const updateUser = await update({ id: data?._id, data: formData });
-console.log(updateUser);
+ try {
+    await update({id:data._id, ...formData}).unwrap();
+  toast.success("Profile updated successfully");
+  
+ } catch (error) {
+    toast.error("Failed to update profile");
+    console.log(error);
+ }  
 };
 
   return (
