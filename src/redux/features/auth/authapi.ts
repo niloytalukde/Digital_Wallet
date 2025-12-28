@@ -29,8 +29,15 @@ getMe: builder.query({
         data:payload
       }),
     }),
+     UpdatePassword: builder.mutation({
+  query: (  payload  ) => ({
+    url: `/auth/changePassword`,
+    method: "PATCH",
+    data: payload , 
+  }),
+}),
 
   }),
 });
 
-export const { useLoginMutation,useRegisterMutation,useGetMeQuery ,useLogOutMutation} = authApi;
+export const { useLoginMutation,useRegisterMutation,useGetMeQuery ,useLogOutMutation,useUpdatePasswordMutation} = authApi;

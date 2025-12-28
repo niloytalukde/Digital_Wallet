@@ -38,14 +38,15 @@ type LoginFormValues = {
    
 try {
   const result=await login(data).unwrap()
-console.log(result.email);
   if(result?.user?.email){
 navigate("/")
     toast.success("Login Successful")
-  }
-  console.log(result);
+  }else{
+    toast.error("Login Failed")}
 } catch (error) {
-  console.log(error);
+   console.log(error);
+    toast.error("Password or Email is incorrect")
+ 
 }
 
     

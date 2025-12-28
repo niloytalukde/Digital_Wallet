@@ -1,4 +1,5 @@
 import { ProfileUpdateModal } from "@/components/Modal/profileUpdate";
+import { UpdatePasswordModal } from "@/components/Modal/UpdatePassword";
 import { useUserGetMeQuery } from "@/redux/features/User/api.user";
 import { useBalanceQuery } from "@/redux/features/Wallet/wallet.api";
 
@@ -24,8 +25,11 @@ const Profile = () => {
             Balance: {balance?.balance} ৳
           </button>
         </div>
+        <div className="">
+          <ProfileUpdateModal data={user}/>
+          <UpdatePasswordModal />
+        </div>
         
-        <ProfileUpdateModal data={user}/>
       </div>
     </div>
   );
