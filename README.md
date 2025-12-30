@@ -149,6 +149,6 @@ Includes at least 5 steps:
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/digital-wallet-frontend.git
+git clone (https://github.com/niloytalukde/Digital_Wallet/]
 cd digital-wallet-frontend
 
